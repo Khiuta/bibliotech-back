@@ -8,9 +8,12 @@ class LivroController {
       const novoLivro = await Livro.create(req.body);
       return res.status(200).json(novoLivro);
     } catch (e) {
-      return res.status(400).json({
-        errors: e.errors.map((err) => err.message),
-      });
+      if (e.errors) {
+        return res.status(400).json({
+          errors: e.errors.map((err) => err.message),
+        });
+      }
+      return res.json(e);
     }
   }
 
@@ -33,8 +36,8 @@ class LivroController {
       });
 
       return res.status(200).json(livros);
-    } catch {
-      return res.status(400).json('Solicitação mal sucedida');
+    } catch (err) {
+      return res.status(400).json(err);
     }
   }
 }

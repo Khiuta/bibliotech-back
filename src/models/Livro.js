@@ -27,9 +27,20 @@ export default class Livro extends Model {
           },
         },
       },
-      ano: Sequelize.INTEGER,
-      edicao: Sequelize.INTEGER,
-      editora: Sequelize.STRING,
+      ano: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: 0,
+      },
+      edicao: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: 0,
+      },
+      editora: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
     }, {
       sequelize,
     });

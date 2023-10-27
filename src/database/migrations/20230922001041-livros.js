@@ -20,11 +20,11 @@ module.exports = {
       allowNull: false,
     },
     ano: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: true,
     },
     edicao: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: true,
     },
     editora: {
