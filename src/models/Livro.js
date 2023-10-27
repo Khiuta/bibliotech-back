@@ -3,14 +3,6 @@ import Sequelize, { Model } from 'sequelize';
 export default class Livro extends Model {
   static init(sequelize) {
     super.init({
-      tombo: {
-        type: Sequelize.INTEGER,
-        validate: {
-          notEmpty: {
-            msg: 'Informe o tombo do livro',
-          },
-        },
-      },
       nome: {
         type: Sequelize.STRING,
         validate: {
@@ -35,11 +27,8 @@ export default class Livro extends Model {
           },
         },
       },
-      data_chegada: Sequelize.STRING,
-      data_lancamento: Sequelize.STRING,
-      volume: Sequelize.INTEGER,
+      ano: Sequelize.INTEGER,
       edicao: Sequelize.INTEGER,
-      local: Sequelize.STRING,
       editora: Sequelize.STRING,
     }, {
       sequelize,

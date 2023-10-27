@@ -7,10 +7,6 @@ module.exports = {
       allowNull: false,
       primaryKey: true,
     },
-    tombo: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
     nome: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -23,24 +19,12 @@ module.exports = {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    data_chegada: {
-      type: Sequelize.STRING,
-      allowNull: true,
-    },
-    data_lancamento: {
-      type: Sequelize.STRING,
-      allowNull: true,
-    },
-    volume: {
+    ano: {
       type: Sequelize.INTEGER,
       allowNull: true,
     },
     edicao: {
       type: Sequelize.INTEGER,
-      allowNull: true,
-    },
-    local: {
-      type: Sequelize.STRING,
       allowNull: true,
     },
     editora: {
