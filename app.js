@@ -16,7 +16,7 @@ import alunoRoutes from './src/routes/alunoRoutes';
 const whiteList = [
   'http://localhost:3000',
   'https://lhvr-bibliotech-fs83px6tc-khiuta.vercel.app/',
-  'http://20.20.1.223:3000'
+  'http://20.20.1.223:3000',
 ];
 
 const corsOptions = {

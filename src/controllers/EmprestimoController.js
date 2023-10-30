@@ -10,8 +10,16 @@ class EmprestimoController {
       const garanteUnico = await Aluno.findOne({
         where: {
           aluno,
+          turma,
+          serie,
         },
       });
+
+      if (!garanteUnico) {
+        await Aluno.create({ aluno, turma, serie });
+        const novoEmprestimo = await Emprestimo.create(req.body);
+        return res.status(400).json(novoEmprestimo);
+      }
 
       if (garanteUnico) {
         if (garanteUnico.disponivel === false) {
@@ -26,17 +34,14 @@ class EmprestimoController {
         },
       });
 
-      if (garanteUnico) {
-        return res.status(200).json(novoEmprestimo);
-      }
-
-      const novoAluno = await Aluno.create({ aluno, turma, serie });
-
-      return res.status(200).json({ novoEmprestimo, novoAluno });
+      return res.status(200).json(novoEmprestimo);
     } catch (e) {
-      return res.status(400).json({
-        errors: e.errors.map((err) => err.message),
-      });
+      if (e.errors) {
+        return res.status(400).json({
+          errors: e.errors.map((err) => err.message),
+        });
+      }
+      return console.log(e);
     }
   }
 
@@ -118,7 +123,7 @@ class EmprestimoController {
       },
     });
 
-    res.status(200);
+    return res.status(200).json('atualizado');
   }
 }
 
