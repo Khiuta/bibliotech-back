@@ -6,5 +6,6 @@ const router = Router();
 
 router.get('/', livroController.index);
 router.post('/', livroController.store);
+router.delete('/:id', livroController.remove);
 
 export default router;

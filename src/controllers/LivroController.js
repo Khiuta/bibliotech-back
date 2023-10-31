@@ -40,6 +40,28 @@ class LivroController {
       return res.status(400).json(err);
     }
   }
+
+  async remove(req, res) {
+    try {
+      const { id } = req.params;
+
+      const livro = await Livro.findOne({
+        where: {
+          id,
+        },
+      });
+
+      await Livro.destroy({ 
+        where: {
+          id,
+        },
+      });
+
+      return res.status(200).json(`${livro.nome} apagado.`);
+    } catch (e) {
+      return console.log(e);
+    }
+  } 
 }
 
 export default new LivroController();
