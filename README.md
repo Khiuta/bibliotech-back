@@ -6,7 +6,7 @@ Para as turmas seguintes que irão mexer nesse projeto, aqui vai alguns pontos a
 3. Saibam muito bem no que vocês tão mexendo antes de mudar, não vai sair colocando coisa que você não conhece pra depois quebrar a aplicação.
 4. Prezem pelo projeto e sempre tentem deixá-lo melhor, confiamos em vocês :).
 
-const turma = 'Informática 2020-2023';
+const turma = 'Informática 2021-2023';
 const criadores = [
   Duda, Gustavo, Hytalo, Isaac, Kamilly, Mateus, Miguel, Thalyson, Willgner,
 ];
