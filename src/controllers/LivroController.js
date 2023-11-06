@@ -51,7 +51,7 @@ class LivroController {
         },
       });
 
-      await Livro.destroy({ 
+      await Livro.destroy({
         where: {
           id,
         },
@@ -61,7 +61,46 @@ class LivroController {
     } catch (e) {
       return console.log(e);
     }
-  } 
+  }
+
+  async edit(req, res) {
+    try {
+      let {
+        nome,
+        autor,
+        quantidade,
+        ano,
+        edicao,
+        editora,
+      } = req.body;
+      const { id } = req.params;
+
+      const livro = await Livro.findOne({
+        where: {
+          id,
+        },
+      });
+
+      if (nome === '') nome = livro.nome;
+      if (autor === '') autor = livro.autor;
+      if (quantidade === '') quantidade = livro.quantidade;
+      if (ano === '') ano = livro.ano;
+      if (edicao === '') edicao = livro.edicao;
+      if (editora === '') editora = livro.editora;
+
+      await Livro.update({
+        nome, autor, quantidade, ano, edicao, editora,
+      }, {
+        where: {
+          id,
+        },
+      });
+
+      return res.status(200).json(`${livro.nome} editado.`);
+    } catch (e) {
+      return console.log(e);
+    }
+  }
 }
 
 export default new LivroController();
