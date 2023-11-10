@@ -68,7 +68,7 @@ class EmprestimoController {
 
       return res.status(200).json(emprestimos);
     } catch (e) {
-      return res.status(400).json('Solicitação mal sucedida');
+      return res.status(400).json(e);
     }
   }
 
@@ -83,7 +83,7 @@ class EmprestimoController {
 
       return res.status(200).json(emprestados);
     } catch (e) {
-      return res.status(400).json('Solicitação mal sucedida');
+      return res.status(400).json(e);
     }
   }
 
@@ -98,7 +98,7 @@ class EmprestimoController {
 
       return res.status(200).json(pendentes);
     } catch (e) {
-      return res.status(400).json('Solicitação mal sucedida');
+      return res.status(400).json(e);
     }
   }
 
