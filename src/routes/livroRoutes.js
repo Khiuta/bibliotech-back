@@ -5,8 +5,9 @@ import livroController from '../controllers/LivroController';
 const router = Router();
 
 router.get('/', livroController.index);
+router.get('/:id', livroController.show);
 router.post('/', livroController.store);
+router.put('/', livroController.update);
 router.delete('/:id', livroController.remove);
-router.put('/:id', livroController.edit);
 
 export default router;

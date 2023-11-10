@@ -5,8 +5,26 @@ import Emprestimo from '../models/Emprestimo';
 class LivroController {
   async store(req, res) {
     try {
-      const novoLivro = await Livro.create(req.body);
-      return res.status(200).json(novoLivro);
+      let i = 0;
+
+      const {
+        nome,
+        autor,
+        quantidade,
+        ano,
+        edicao,
+        editora,
+      } = req.body;
+
+      do {
+        Livro.create({
+          nome, autor, ano, edicao, editora,
+        });
+
+        i++;
+      } while (i < quantidade);
+
+      return res.status(200).json(`${quantidade} ${nome} cadastrados.`);
     } catch (e) {
       if (e.errors) {
         return res.status(400).json({
@@ -19,7 +37,9 @@ class LivroController {
 
   async index(req, res) {
     try {
-      const livros = await Livro.findAll();
+      const livros = await Livro.findAll({
+        order: [['id', 'ASC']],
+      });
       const emprestimos = await Emprestimo.findAll();
 
       const hoje = moment().format();
@@ -38,6 +58,26 @@ class LivroController {
       return res.status(200).json(livros);
     } catch (err) {
       return res.status(400).json(err);
+    }
+  }
+
+  async show(req, res) {
+    try {
+      const { id } = req.params;
+
+      if (!id || id === undefined) {
+        return res.status(200);
+      }
+
+      const livro = await Livro.findOne({
+        where: {
+          id,
+        },
+      });
+
+      return res.status(200).json(livro);
+    } catch (e) {
+      return console.log('erro do show');
     }
   }
 
@@ -63,40 +103,57 @@ class LivroController {
     }
   }
 
-  async edit(req, res) {
+  async update(req, res) {
     try {
-      let {
+      const {
         nome,
         autor,
-        quantidade,
         ano,
         edicao,
         editora,
       } = req.body;
-      const { id } = req.params;
 
-      const livro = await Livro.findOne({
+      let {
+        nome_livro,
+        autor_livro,
+        ano_livro,
+        edicao_livro,
+        editora_livro,
+      } = req.body;
+
+      const livro = await Livro.findAll({
         where: {
-          id,
+          nome: nome_livro,
+          autor: autor_livro,
+          ano: ano_livro,
+          edicao: edicao_livro,
+          editora: editora_livro,
         },
       });
 
-      if (nome === '') nome = livro.nome;
-      if (autor === '') autor = livro.autor;
-      if (quantidade === '') quantidade = livro.quantidade;
-      if (ano === '') ano = livro.ano;
-      if (edicao === '') edicao = livro.edicao;
-      if (editora === '') editora = livro.editora;
+      if (nome === '') nome_livro = livro.nome_livro;
+      if (autor === '') autor_livro = livro.autor_livro;
+      if (ano === '') ano_livro = livro.ano_livro;
+      if (edicao === '') edicao_livro = livro.edicao_livro;
+      if (editora === '') editora_livro = livro.editora_livro;
 
       await Livro.update({
-        nome, autor, quantidade, ano, edicao, editora,
+        nome,
+        autor,
+        ano,
+        edicao,
+        editora,
       }, {
         where: {
-          id,
+          nome: nome_livro,
+          autor: autor_livro,
+          ano: ano_livro,
+          edicao: edicao_livro,
+          editora: editora_livro,
         },
       });
 
-      return res.status(200).json(`${livro.nome} editado.`);
+      return res.status(200).json(`Livro ${livro.nome} atualizado.`);
     } catch (e) {
       return console.log(e);
     }

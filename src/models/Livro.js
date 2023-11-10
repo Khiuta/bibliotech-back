@@ -19,14 +19,6 @@ export default class Livro extends Model {
           },
         },
       },
-      quantidade: {
-        type: Sequelize.INTEGER,
-        validate: {
-          notEmpty: {
-            msg: 'Informe a quantidade de livros',
-          },
-        },
-      },
       ano: {
         type: Sequelize.STRING,
         allowNull: true,

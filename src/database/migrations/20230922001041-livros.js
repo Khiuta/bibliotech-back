@@ -15,10 +15,6 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    quantidade: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
     ano: {
       type: Sequelize.STRING,
       allowNull: true,
