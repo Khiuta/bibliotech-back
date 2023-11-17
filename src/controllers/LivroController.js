@@ -125,16 +125,16 @@ class LivroController {
         where: {
           nome: nome_livro,
           autor: autor_livro,
-          ano: ano_livro,
-          edicao: edicao_livro,
+          // ano: ano_livro,
+          // edicao: edicao_livro,
           editora: editora_livro,
         },
       });
 
       if (nome === '') nome_livro = livro.nome_livro;
       if (autor === '') autor_livro = livro.autor_livro;
-      if (ano === '') ano_livro = livro.ano_livro;
-      if (edicao === '') edicao_livro = livro.edicao_livro;
+      if (ano === '' || undefined) ano_livro = livro.ano_livro;
+      if (edicao === '' || undefined) edicao_livro = livro.edicao_livro;
       if (editora === '') editora_livro = livro.editora_livro;
 
       await Livro.update({
@@ -147,8 +147,8 @@ class LivroController {
         where: {
           nome: nome_livro,
           autor: autor_livro,
-          ano: ano_livro,
-          edicao: edicao_livro,
+          // ano: ano_livro,
+          // edicao: edicao_livro,
           editora: editora_livro,
         },
       });

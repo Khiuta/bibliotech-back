@@ -18,7 +18,7 @@ class EmprestimoController {
       if (!garanteUnico) {
         await Aluno.create({ aluno, turma, serie });
         const novoEmprestimo = await Emprestimo.create(req.body);
-        return res.status(400).json(novoEmprestimo);
+        return res.status(200).json(novoEmprestimo);
       }
 
       if (garanteUnico) {
@@ -36,11 +36,11 @@ class EmprestimoController {
 
       return res.status(200).json(novoEmprestimo);
     } catch (e) {
-      if (e.errors) {
-        return res.status(400).json({
-          errors: e.errors.map((err) => err.message),
-        });
-      }
+      // if (e.errors) {
+      //   return res.status(400).json({
+      //     errors: e.errors.map((err) => err.message),
+      //   });
+      // }
       return console.log(e);
     }
   }
